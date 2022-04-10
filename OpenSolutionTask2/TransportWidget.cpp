@@ -43,26 +43,26 @@ TransportWidget::TransportWidget( QWidget* parent ) : QWidget( parent ) {
     weightEdit = new QLineEdit;
     panelLayout->addWidget( weightEdit, 1, 5 );
 
-    QLabel* lbModel = new QLabel("Модель");
-    panelLayout->addWidget( lbModel, 1, 6 );
-    modelEdit = new QLineEdit;
-    panelLayout->addWidget( modelEdit, 1, 7 );
-
     QLabel* lbBrand = new QLabel("Марка");
-    panelLayout->addWidget( lbBrand, 1, 8 );
+    panelLayout->addWidget( lbBrand, 1, 6 );
     brandEdit = new QLineEdit;
-    panelLayout->addWidget( brandEdit, 1, 9 );
+    panelLayout->addWidget( brandEdit, 1, 7 );
+
+    QLabel* lbModel = new QLabel("Модель");
+    panelLayout->addWidget( lbModel, 1, 8 );
+    modelEdit = new QLineEdit;
+    panelLayout->addWidget( modelEdit, 1, 9 );
 
     QPushButton* createButton = new QPushButton("Добавить");
     connect( createButton, SIGNAL( clicked() ), SLOT( onAppend() ) );
     panelLayout->addWidget( createButton, 1, 10 );
 
     QPushButton* dataInFileButton = new QPushButton("Добавить данные в файл");
-    //connect( dataInFileButton, SIGNAL( clicked() ), SLOT( onAppend() ) );
+    connect(dataInFileButton,SIGNAL(clicked()),ModelTransport,SLOT(printTransportTableInFile()));
     panelLayout->addWidget( dataInFileButton, 0, 3 );
 
     QPushButton* dataOutFileButton = new QPushButton("Добавить данные из файла");
-    //connect( dataInFileButton, SIGNAL( clicked() ), SLOT( onAppend() ) );
+    connect( dataOutFileButton, SIGNAL( clicked() ),ModelTransport,SLOT(printTranportTableOutFile()) );
     panelLayout->addWidget( dataOutFileButton, 0, 4 );
 
     resize( 1600, 1000 );
@@ -85,7 +85,9 @@ void TransportWidget::onAppend() {
     typeTransportEdit->clear();
     weightEdit->clear();
     yearManufactureEdit->clear();
+    typeTransportEdit->clear();
     brandEdit->clear();
     modelEdit->clear();
 }
+
 

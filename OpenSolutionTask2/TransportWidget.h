@@ -17,6 +17,7 @@ public:
 private slots:
     void onAppend();
     void deleteTransport();
+
 private:
     QTableView* TransportView;
     TransportModel* ModelTransport;

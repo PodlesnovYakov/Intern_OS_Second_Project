@@ -17,6 +17,11 @@ public:
 
     void appendTransport(const QString& typeTrQ,const QString& weightQ, const QString& yearQ,const QString& brandQ,const QString& modelQ);
     void removeSelected(const QString& deleteUniqueId);
+    void fileappendTransport(const QString& idQ,const QString& typeTrQ,const QString& yearQ, const QString& weightQ,const QString& brandQ,const QString& modelQ);
+public slots:
+    void printTransportTableInFile();
+    void printTranportTableOutFile();
+
 
 private:
     enum Column {
