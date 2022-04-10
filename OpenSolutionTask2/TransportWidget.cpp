@@ -57,6 +57,14 @@ TransportWidget::TransportWidget( QWidget* parent ) : QWidget( parent ) {
     connect( createButton, SIGNAL( clicked() ), SLOT( onAppend() ) );
     panelLayout->addWidget( createButton, 1, 10 );
 
+    QPushButton* dataInFileButton = new QPushButton("Добавить данные в файл");
+    //connect( dataInFileButton, SIGNAL( clicked() ), SLOT( onAppend() ) );
+    panelLayout->addWidget( dataInFileButton, 0, 3 );
+
+    QPushButton* dataOutFileButton = new QPushButton("Добавить данные из файла");
+    //connect( dataInFileButton, SIGNAL( clicked() ), SLOT( onAppend() ) );
+    panelLayout->addWidget( dataOutFileButton, 0, 4 );
+
     resize( 1600, 1000 );
 }
 
@@ -64,6 +72,7 @@ TransportWidget::~TransportWidget() {
 }
 void TransportWidget::deleteTransport(){
     ModelTransport->removeSelected(deleteTransportEdit->text());
+    deleteTransportEdit->clear();
 }
 void TransportWidget::onAppend() {
     ModelTransport->appendTransport(
@@ -73,5 +82,10 @@ void TransportWidget::onAppend() {
         brandEdit->text(),
         modelEdit->text()
     );
+    typeTransportEdit->clear();
+    weightEdit->clear();
+    yearManufactureEdit->clear();
+    brandEdit->clear();
+    modelEdit->clear();
 }
 

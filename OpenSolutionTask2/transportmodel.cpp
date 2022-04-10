@@ -48,14 +48,14 @@ QVariant TransportModel::data( const QModelIndex& index, int role ) const {
     ) {
         return QVariant();
     }
-
     return tableTransports[ index.row() ][ Column( index.column() ) ];
 }
 
 Qt::ItemFlags TransportModel::flags( const QModelIndex& index ) const {
     Qt::ItemFlags flags = QAbstractTableModel::flags( index );
     if( index.isValid() ) {
-        if( index.column() == weight ) {
+        if( index.column() == weight || index.column() == typeTransport || index.column() == yearManufacture
+                || index.column() == brand || index.column() == model  ) {
             flags |= Qt::ItemIsEditable;
         }
     }
@@ -85,14 +85,14 @@ bool TransportModel::setData( const QModelIndex& index, const QVariant& value, i
 
     tableTransports[ index.row() ][ Column( index.column() ) ] = value;
     emit dataChanged( index, index );
-
     return true;
+
 }
 void TransportModel::removeSelected(const QString& deleteUniqueId) {
     int i = 0;
     Transports::iterator it = tableTransports.begin();
     while( it != tableTransports.end() ) {
-        if( it->value( uniqueIdentificator, deleteUniqueId ).toBool() ) {
+        if( it->value( uniqueIdentificator) == deleteUniqueId ) {
             beginRemoveRows( QModelIndex(), i, i );
             it = tableTransports.erase( it );
             endRemoveRows();
